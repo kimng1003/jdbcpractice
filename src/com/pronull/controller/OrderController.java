@@ -12,7 +12,6 @@ public class OrderController {
 		
 		List<CategoryDTO> categoryList = orderService.selectAllCategory();
 		 
-		
 		return categoryList;
 	}
 

@@ -1,14 +1,17 @@
 package com.pronull.dao;
 
+import static com.pronull.common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import static com.pronull.common.JDBCTemplate.*;
+
 import com.pronull.dto.CategoryDTO;
 
 public class OrderDAO {
@@ -37,6 +40,8 @@ public class OrderDAO {
 			pstmt = con.prepareStatement(query);
 			rset = pstmt.executeQuery();
 
+			categoryList = new ArrayList<>();
+			
 			while(rset.next()) {
 				
 				CategoryDTO category = new CategoryDTO();

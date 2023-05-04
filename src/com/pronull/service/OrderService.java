@@ -18,6 +18,8 @@ public class OrderService {
 		
 		List<CategoryDTO> categoryList = orderDAO.selectAllCategory(con);
 		
+		close(con);
+		
 		return categoryList;
 	}
 	

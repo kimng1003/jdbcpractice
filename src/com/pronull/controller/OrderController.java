@@ -6,11 +6,14 @@ import com.pronull.service.OrderService;
 
 public class OrderController {
 
-	private OrderService orderservice = new OrderService();
+	private OrderService orderService = new OrderService();
 	
-	public List<CategoryDTO> selectAllcategory() {
+	public List<CategoryDTO> selectAllCategory() {
 		
-		return null;
+		List<CategoryDTO> categoryList = orderService.selectAllCategory();
+		 
+		
+		return categoryList;
 	}
 
 }

@@ -5,7 +5,7 @@
 	    SELECT
 	           A.CATEGORY_CODE
 	         , A.CATEGORY_NAME
-	      FROM TBL_CATEGORY A
+	      FROM CATEGORY A
 	</entry>
 	
 	<entry key="selectMenuByCategory">
@@ -15,7 +15,7 @@
              , A.MENU_PRICE
              , A.CATEGORY_CODE
              , A.ORDERABLE_STATUS
-          FROM TBL_MENU A
+          FROM MENU A
          WHERE A.CATEGORY_CODE = ?
 	</entry>
 </properties>

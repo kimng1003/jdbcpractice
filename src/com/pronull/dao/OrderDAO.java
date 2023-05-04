@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.pronull.dto.CategoryDTO;
+import com.pronull.dto.MenuDTO;
 
 public class OrderDAO {
 
@@ -63,11 +64,46 @@ public class OrderDAO {
 		
 		return categoryList;
 	}
-	
 
-	
-	
-	
-	
+	public List<MenuDTO> selectMenuBy(Connection con, int categoryCode) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<MenuDTO> menuList = null;
+		
+		String query = prop.getProperty("selectMenuByCategory");
+		
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, categoryCode);
+			rset = pstmt.executeQuery();
+			
+			menuList = new ArrayList<>();
+			
+			while(rset.next()) {
+				
+				MenuDTO menu = new MenuDTO();
+				menu.setCode(rset.getInt("MENU_CODE"));
+				menu.setName(rset.getString("MENU_NAME"));
+				menu.setPrice(rset.getInt("MENU_PRICE"));
+				menu.setCategoryCode(rset.getInt("CATEGORY_CODE"));
+				menu.setOrderableStatus(rset.getString("ORDERABLE_STATUS"));
+ 			
+				menuList.add(menu);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			close(rset);
+			close(pstmt);
+		}
+		
+		return menuList;
+	}
 	
 }
